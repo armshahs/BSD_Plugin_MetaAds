@@ -1,0 +1,7 @@
+{
+  "name": "bsd-meta-ads",
+  "owner": { "name": "Blue Sense Digital" },
+  "plugins": [
+    { "name": "bsd-meta-ads", "source": "./plugin" }
+  ]
+}

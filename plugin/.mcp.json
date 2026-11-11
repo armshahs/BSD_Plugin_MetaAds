@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "bsd-meta-ads": {
+      "type": "http",
+      "url": "https://meta-ads-mcp.bluesensedigital.com.au/mcp"
+    }
+  }
+}

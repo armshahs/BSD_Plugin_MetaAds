@@ -1,0 +1,28 @@
+name: Bump plugin version
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - plugin/.claude-plugin/plugin.json
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Raise the patch version
+        run: |
+          file=plugin/.claude-plugin/plugin.json
+          current=$(jq -r .version "$file")
+          new=$(echo "$current" | awk -F. '{print $1"."$2"."$3+1}')
+          jq --arg version "$new" '.version = $version' "$file" > "$file.tmp"
+          mv "$file.tmp" "$file"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$file"
+          git commit -m "Bump plugin version to $new"
+          git push
