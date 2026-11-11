@@ -1,7 +1,7 @@
 {
   "name": "bsd-meta-ads",
   "displayName": "BSD Meta Ads",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Reviews Meta performance and creates or updates paused campaigns and ad sets through the BSD MCP after the user signs in. This is a Blue Sense Digital plugin.",
   "author": {
     "name": "Blue Sense Digital"
