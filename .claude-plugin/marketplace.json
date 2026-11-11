@@ -1,5 +1,6 @@
 {
   "name": "bsd-meta-ads",
+  "description": "Blue Sense Digital plugin for Meta Ads Upload.",
   "owner": { "name": "Blue Sense Digital" },
   "plugins": [
     { "name": "bsd-meta-ads", "source": "./plugin" }
