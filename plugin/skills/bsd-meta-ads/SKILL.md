@@ -34,14 +34,8 @@ On a new chat, call `tool_search` once. Reuse the tools list. Call `tool_search`
 
 ## Start the chat
 
-If this chat has no `context_id`, find the tool whose `toolType` is `"session"`. Its name is `start_chat`. Check its `inputSchema`, then `tool_execute` `start_chat`. Keep the returned `context_id` for the whole chat. Do not call `start_chat` again and do not create another id.
+If this chat has no `context_id`, find the tool whose `toolType` is `"session"`. Its name is `start_chat`. Check its `inputSchema`, then `tool_execute` `start_chat`. Keep the returned `context_id` for the whole chat. Do not call `start_chat` again and do not create another id. Also, the `chat_instructions` field will give the steps to follow.
 
 ## Choose the workflow
 
-After that, look only at tools whose `toolType` is `"skill"`. Choose the one whose description matches the user's request. If none match, say so. If more than one matches, ask which task they want. Do not invent a workflow.
-
-Check that tool's `inputSchema`, then `tool_execute` it with this chat's `context_id` and the other required arguments. Follow the text it returns.
-
-## Run each step
-
-For each step in that text, find the named tool in the tools list. Before `tool_execute`, check that every required argument from its `inputSchema` is present and that no argument outside that schema is sent. If a required value is missing, ask the user. Pass the same `context_id` on every call.
+Refer to the the `chat_instructions` field obtained from the `start_chat` tool. That will give all the steps. Follow it.
