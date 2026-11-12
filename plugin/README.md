@@ -1,16 +1,13 @@
 # BSD Meta Ads
 
-BSD Meta Ads is a Blue Sense Digital plugin for Claude. It reviews Meta ads performance and creates or updates paused campaigns and ad sets. Tool calls go to the BSD Meta Ads MCP after you sign in with a BSD account. A person without a BSD account cannot call the ads tools.
+BSD Meta Ads is a Blue Sense Digital plugin for Claude. It runs Meta ads tasks for a brand the signed-in user can access. Tool calls go to the BSD Meta Ads MCP after you sign in with a BSD account. A person without a BSD account cannot call the ads tools.
 
-The plugin includes six skills:
+The plugin includes one skill, `bsd-meta-ads`. That skill calls `tool_search` and `tool_execute` on the MCP server. `tool_search` returns the tool catalog. `tool_execute` runs one tool from that catalog. The connector exposes only those two tools.
 
-- `review-meta-performance` reviews ROAS, spend, and the metrics table.
-- `create-paused-campaign` creates one paused Meta campaign.
-- `update-paused-campaign` updates one paused Meta campaign.
-- `create-paused-ad-set` creates one paused Meta ad set under an existing campaign.
-- `update-paused-ad-set` updates one paused Meta ad set.
-- `test-skill` confirms the plugin is loaded and calls no tools.
+On a new chat, the skill calls `tool_search`, then runs `start_chat` once. `start_chat` is the tool whose `toolType` is `session`. That call returns a `context_id`. The same chat keeps that id. A later request reuses it and calls `start_chat` only when the chat has none.
 
-Each skill calls its workflow tool on the MCP server and follows the text that tool returns. The workflow steps are stored on the server. They are not written in these skill files. Changing those steps does not require a plugin release.
+Workflow tools have `toolType` `skill`. The skill picks the one whose description matches the request and follows the text that tool returns. The workflow steps are stored on the server. They are not written in the skill file. Adding or changing a workflow does not require a plugin release.
 
-Connect the plugin connector before asking Claude to run a skill. The skills load before that connection. The Meta tools stay unreachable until the connector shows Connected. The same chat keeps one context id. A later skill reuses that id and calls start chat only when the chat has none.
+Connect the plugin connector before asking Claude to run the skill. The skill loads before that connection. The Meta tools stay unreachable until the connector shows Connected.
+
+Asking to run the test skill, or to confirm the plugin is loaded, gets one reply: The BSD Meta Ads plugin is loaded. That check calls no tools.
