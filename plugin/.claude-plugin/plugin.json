@@ -7,5 +7,6 @@
     "name": "Blue Sense Digital"
   },
   "license": "MIT",
-  "repository": "https://github.com/armshahs/BSD_Plugin_MetaAds"
+  "repository": "https://github.com/armshahs/BSD_Plugin_MetaAds",
+  "icon": "./bsd_logo_og_1200_630.png"
 }
