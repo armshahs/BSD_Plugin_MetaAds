@@ -1,7 +1,7 @@
 {
   "name": "bsd-meta-ads",
   "displayName": "BSD Meta Ads",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Runs Meta ads tasks for a signed-in user through the BSD MCP. Workflows come from the server. This is a Blue Sense Digital plugin.",
   "author": {
     "name": "Blue Sense Digital"
